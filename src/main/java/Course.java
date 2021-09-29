@@ -7,8 +7,12 @@ public class Course {
     private DateTime startDate;
     private DateTime endDate;
 
-    public Course(){
-
+    public Course(String name, Module[] modules, Student[] students, DateTime startDate, DateTime endDate) {
+        setName(name);
+        setModules(modules);
+        setStudents(students);
+        setStartDate(startDate);
+        setEndDate(endDate);
     }
 
     public String getName() {

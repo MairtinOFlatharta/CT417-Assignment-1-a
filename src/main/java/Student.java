@@ -9,8 +9,14 @@ public class Student {
     private Course[] courses;
     private Module[] modules;
 
-    public Student(){
-
+    public Student(String name, short age, Date dob, String id, Course[] courses, Module[] modules) {
+        setName(name);
+        setAge(age);
+        setDob(dob);
+        setId(id);
+        setUsername();
+        setCourses(courses);
+        setModules(modules);
     }
 
     public String getName() {
@@ -49,8 +55,8 @@ public class Student {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername() {
+        this.username = this.name + this.age;
     }
 
     public Course[] getCourses() {

@@ -2,8 +2,9 @@ public class Module {
     private String name;
     private String id;
 
-    public Module(){
-
+    public Module(String name, String id) {
+        setName(name);
+        setId(id);
     }
 
     public String getName() {
