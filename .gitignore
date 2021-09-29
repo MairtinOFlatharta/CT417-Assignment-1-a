@@ -1,5 +1,5 @@
 # Default ignored files
-/workspace.xml
+.idea/
 
 # Template .gitignore file for Gradle (https://github.com/github/gitignore/blob/master/Gradle.gitignore)
 .gradle
