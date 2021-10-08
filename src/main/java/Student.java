@@ -11,8 +11,8 @@ public class Student {
 
     public Student(String name, short age, DateTime dob, String id, Course[] courses, Module[] modules) {
         setName(name);
-        setAge(age);
         setDob(dob);
+        setAge(age);
         setId(id);
         setUsername();
         setCourses(courses);
@@ -24,7 +24,11 @@ public class Student {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if (name != null) {
+            if (name.length() >= 1)
+                this.name = name;
+        }
+        else this.name = "UNDEFINED";
     }
 
     public short getAge() {
@@ -32,7 +36,9 @@ public class Student {
     }
 
     public void setAge(short age) {
-        this.age = age;
+        if (age >= 0)
+            this.age = age;
+        else this.age = 0;
     }
 
     public DateTime getDob() {
@@ -40,7 +46,14 @@ public class Student {
     }
 
     public void setDob(DateTime dob) {
-        this.dob = dob;
+        if (dob != null) {
+            if (dob.isBeforeNow())
+                this.dob = dob;
+            else
+                this.dob = DateTime.now();
+        }
+        else
+            this.dob = DateTime.now();
     }
 
     public String getId() {
@@ -48,7 +61,14 @@ public class Student {
     }
 
     public void setId(String id) {
-        this.id = id;
+        if (id != null) {
+            if (id.length() >= 1)
+                this.id = id;
+            else
+                this.id = "UNDEFINED";
+        }
+        else
+            this.id = "UNDEFINED";
     }
 
     public String getUsername() {
@@ -64,7 +84,10 @@ public class Student {
     }
 
     public void setCourses(Course[] courses) {
-        this.courses = courses;
+        if (courses != null)
+            this.courses = courses;
+        else
+            this.courses = new Course[0];
     }
 
     public Module[] getModules() {
@@ -72,6 +95,9 @@ public class Student {
     }
 
     public void setModules(Module[] modules) {
-        this.modules = modules;
+        if (modules != null)
+            this.modules = modules;
+        else
+            this.modules = new Module[0];
     }
 }

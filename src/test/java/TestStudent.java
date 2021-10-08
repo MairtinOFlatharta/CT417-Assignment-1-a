@@ -16,14 +16,60 @@ public class TestStudent {
                 new Course[0],
                 new Module[0]
         );
-        assertEquals(testStudent.getName(), "testName");
-        assertEquals(testStudent.getAge(), (short)20);
-        assertEquals(testStudent.getDob().getYear(), 2020);
-        assertEquals(testStudent.getDob().getMonthOfYear(), 1);
-        assertEquals(testStudent.getDob().getDayOfYear(), 1);
-        assertEquals(testStudent.getId(), "1234");
-        assertEquals(testStudent.getUsername(), "testName20");
-        assertArrayEquals(testStudent.getCourses(), new Course[0]);
-        assertArrayEquals(testStudent.getModules(), new Module[0]);
+        assertEquals("testName", testStudent.getName());
+        assertEquals((short)20, testStudent.getAge());
+
+        assertEquals(2020, testStudent.getDob().getYear());
+        assertEquals(1, testStudent.getDob().getMonthOfYear());
+        assertEquals(1, testStudent.getDob().getDayOfMonth());
+
+        assertEquals("1234", testStudent.getId());
+        assertEquals("testName20", testStudent.getUsername());
+        assertArrayEquals(new Course[0], testStudent.getCourses());
+        assertArrayEquals(new Module[0], testStudent.getModules());
+    }
+
+    @Test
+    public void testNullStudent(){
+        // Build a new student object using only null or invalid values
+        // Confirm that setters use default values
+        Student nullStudent = new Student(
+                null,
+                (short)-10,
+                null,
+                null,
+                null,
+                null
+        );
+        assertEquals("UNDEFINED", nullStudent.getName());
+        assertEquals((short)0, nullStudent.getAge());
+
+        assertEquals(DateTime.now().getYear(), nullStudent.getDob().getYear());
+        assertEquals(DateTime.now().getMonthOfYear(), nullStudent.getDob().getMonthOfYear());
+        assertEquals(DateTime.now().getDayOfMonth(), nullStudent.getDob().getDayOfMonth());
+
+        assertEquals("UNDEFINED", nullStudent.getId());
+        assertArrayEquals(new Course[0], nullStudent.getCourses());
+        assertArrayEquals(new Module[0], nullStudent.getModules());
+    }
+
+    @Test
+    public void testInvalidBirthday(){
+        // Build student that has a birth date set in the future
+        // and check if default birth date is used
+        // Make test birth year that will always be 20 years in the future
+        String testDOBYear = Integer.toString(DateTime.now().getYear() + 20);
+        Student dobStudent = new Student(
+                null,
+                (short)-10,
+                DateTime.parse(testDOBYear + "-01-01"),
+                null,
+                null,
+                null
+        );
+
+        assertEquals(DateTime.now().getYear(), dobStudent.getDob().getYear());
+        assertEquals(DateTime.now().getMonthOfYear(), dobStudent.getDob().getMonthOfYear());
+        assertEquals(DateTime.now().getDayOfMonth(), dobStudent.getDob().getDayOfMonth());
     }
 }

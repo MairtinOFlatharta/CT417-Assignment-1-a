@@ -20,7 +20,14 @@ public class Course {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if (name != null) {
+            if (name.length() >= 1)
+                this.name = name;
+            else
+                this.name = "UNDEFINED";
+        }
+        else
+            this.name = "UNDEFINED";
     }
 
     public Module[] getModules() {
@@ -28,7 +35,10 @@ public class Course {
     }
 
     public void setModules(Module[] modules) {
-        this.modules = modules;
+        if (modules != null)
+            this.modules = modules;
+        else
+            this.modules = new Module[0];
     }
 
     public Student[] getStudents() {
@@ -36,7 +46,10 @@ public class Course {
     }
 
     public void setStudents(Student[] students) {
-        this.students = students;
+        if (students != null)
+            this.students = students;
+        else
+            this.students = new Student[0];
     }
 
     public DateTime getStartDate() {
@@ -44,7 +57,10 @@ public class Course {
     }
 
     public void setStartDate(DateTime startDate) {
-        this.startDate = startDate;
+        if (startDate != null)
+            this.startDate = startDate;
+        else
+            this.startDate = DateTime.now();
     }
 
     public DateTime getEndDate() {
@@ -52,6 +68,13 @@ public class Course {
     }
 
     public void setEndDate(DateTime endDate) {
-        this.endDate = endDate;
+        if (endDate != null) {
+            if (endDate.isAfter(this.getStartDate()))
+                this.endDate = endDate;
+            else
+                this.endDate = this.getStartDate();
+        }
+        else
+            this.endDate = this.getStartDate();
     }
 }

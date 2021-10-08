@@ -12,7 +12,14 @@ public class Module {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if (name != null) {
+            if (name.length() >= 1)
+                this.name = name;
+            else
+                this.name = "UNDEFINED";
+        }
+        else
+            this.name = "UNDEFINED";
     }
 
     public String getId() {
@@ -20,6 +27,13 @@ public class Module {
     }
 
     public void setId(String id) {
-        this.id = id;
+        if (id != null) {
+            if (id.length() >= 1)
+                this.id = id;
+            else
+                this.id = "UNDEFINED";
+        }
+        else
+            this.id = "UNDEFINED";
     }
 }
