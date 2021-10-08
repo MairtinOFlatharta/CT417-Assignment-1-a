@@ -1,4 +1,7 @@
 import org.junit.Test;
+
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 public class TestModule {
@@ -8,10 +11,14 @@ public class TestModule {
         // Ensure all data returned by getters is accurate
         Module testModule = new Module(
                 "testName",
-                "testID"
+                "testID",
+                new ArrayList<Student>(),
+                new ArrayList<Course>()
         );
         assertEquals("testName", testModule.getName());
         assertEquals("testID", testModule.getId());
+        assertEquals(new ArrayList<Student>(), testModule.getStudents());
+        assertEquals(new ArrayList<Course>(), testModule.getCourses());
     }
 
     @Test
@@ -20,10 +27,14 @@ public class TestModule {
         // Confirm that setters use default values
         Module nullModule = new Module(
                 null,
+                null,
+                null,
                 null
         );
         assertEquals("UNDEFINED", nullModule.getName());
         assertEquals("UNDEFINED", nullModule.getId());
+        assertEquals(new ArrayList<Student>(), nullModule.getStudents());
+        assertEquals(new ArrayList<Course>(), nullModule.getCourses());
     }
 
     @Test
@@ -32,7 +43,9 @@ public class TestModule {
         // Fields should be replaced with default values
         Module emptyModule = new Module(
                 "",
-                ""
+                "",
+                null,
+                null
         );
         assertEquals("UNDEFINED", emptyModule.getName());
         assertEquals("UNDEFINED", emptyModule.getId());

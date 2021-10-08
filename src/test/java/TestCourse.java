@@ -1,6 +1,6 @@
 import org.junit.Test;
 import org.joda.time.DateTime;
-import static org.junit.Assert.assertArrayEquals;
+import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 
 public class TestCourse {
@@ -10,14 +10,14 @@ public class TestCourse {
         // Ensure all data returned by getters is accurate
         Course testCourse = new Course(
                 "testName",
-                new Module[0],
-                new Student[0],
+                new ArrayList<Module>(),
+                new ArrayList<Student>(),
                 DateTime.parse("2020-01-01"),
                 DateTime.parse("2020-01-02")
         );
         assertEquals("testName", testCourse.getName());
-        assertArrayEquals(new Module[0], testCourse.getModules());
-        assertArrayEquals(new Student[0], testCourse.getStudents());
+        assertEquals(new ArrayList<Module>(), testCourse.getModules());
+        assertEquals(new ArrayList<Student>(), testCourse.getStudents());
 
         assertEquals(2020, testCourse.getStartDate().getYear());
         assertEquals(1, testCourse.getStartDate().getMonthOfYear());
@@ -40,8 +40,8 @@ public class TestCourse {
                 null
         );
         assertEquals("UNDEFINED", nullCourse.getName());
-        assertArrayEquals(new Module[0], nullCourse.getModules());
-        assertArrayEquals(new Student[0], nullCourse.getStudents());
+        assertEquals(new ArrayList<Module>(), nullCourse.getModules());
+        assertEquals(new ArrayList<Student>(), nullCourse.getStudents());
 
         assertEquals(DateTime.now().getYear(), nullCourse.getStartDate().getYear());
         assertEquals(DateTime.now().getMonthOfYear(), nullCourse.getStartDate().getMonthOfYear());

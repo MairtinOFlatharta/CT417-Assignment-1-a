@@ -1,6 +1,6 @@
 import org.junit.Test;
 import org.joda.time.DateTime;
-import static org.junit.Assert.assertArrayEquals;
+import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 
 public class TestStudent {
@@ -13,8 +13,8 @@ public class TestStudent {
                 (short)20,
                 DateTime.parse("2020-01-01"),
                 "1234",
-                new Course[0],
-                new Module[0]
+                new ArrayList<Course>(),
+                new ArrayList<Module>()
         );
         assertEquals("testName", testStudent.getName());
         assertEquals((short)20, testStudent.getAge());
@@ -25,8 +25,8 @@ public class TestStudent {
 
         assertEquals("1234", testStudent.getId());
         assertEquals("testName20", testStudent.getUsername());
-        assertArrayEquals(new Course[0], testStudent.getCourses());
-        assertArrayEquals(new Module[0], testStudent.getModules());
+        assertEquals(new ArrayList<Course>(), testStudent.getCourses());
+        assertEquals(new ArrayList<Module>(), testStudent.getModules());
     }
 
     @Test
@@ -49,8 +49,8 @@ public class TestStudent {
         assertEquals(DateTime.now().getDayOfMonth(), nullStudent.getDob().getDayOfMonth());
 
         assertEquals("UNDEFINED", nullStudent.getId());
-        assertArrayEquals(new Course[0], nullStudent.getCourses());
-        assertArrayEquals(new Module[0], nullStudent.getModules());
+        assertEquals(new ArrayList<Course>(), nullStudent.getCourses());
+        assertEquals(new ArrayList<Module>(), nullStudent.getModules());
     }
 
     @Test

@@ -1,13 +1,14 @@
 import org.joda.time.DateTime;
+import java.util.ArrayList;
 
 public class Course {
     private String name;
-    private Module[] modules;
-    private Student[] students;
+    private ArrayList<Module> modules;
+    private ArrayList<Student> students;
     private DateTime startDate;
     private DateTime endDate;
 
-    public Course(String name, Module[] modules, Student[] students, DateTime startDate, DateTime endDate) {
+    public Course(String name, ArrayList<Module> modules, ArrayList<Student> students, DateTime startDate, DateTime endDate) {
         setName(name);
         setModules(modules);
         setStudents(students);
@@ -30,26 +31,26 @@ public class Course {
             this.name = "UNDEFINED";
     }
 
-    public Module[] getModules() {
+    public ArrayList<Module> getModules() {
         return modules;
     }
 
-    public void setModules(Module[] modules) {
+    public void setModules(ArrayList<Module> modules) {
         if (modules != null)
             this.modules = modules;
         else
-            this.modules = new Module[0];
+            this.modules = new ArrayList<Module>();
     }
 
-    public Student[] getStudents() {
+    public ArrayList<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(Student[] students) {
+    public void setStudents(ArrayList<Student> students) {
         if (students != null)
             this.students = students;
         else
-            this.students = new Student[0];
+            this.students = new ArrayList<Student>();
     }
 
     public DateTime getStartDate() {
@@ -76,5 +77,33 @@ public class Course {
         }
         else
             this.endDate = this.getStartDate();
+    }
+
+    public void addStudent(Student newStudent){
+        if (newStudent != null && !students.contains(newStudent)){
+            students.add(newStudent);
+            newStudent.addCourse(this);
+        }
+    }
+
+    public void removeStudent(Student studentToDelete){
+        if (studentToDelete != null && students.contains(studentToDelete)){
+            students.remove(studentToDelete);
+            studentToDelete.removeCourse(this);
+        }
+    }
+
+    public void addModule(Module newModule){
+        if (newModule != null && !modules.contains(newModule)){
+            modules.add(newModule);
+            newModule.addCourse(this);
+        }
+    }
+
+    public void removeModule(Module moduleToDelete){
+        if (moduleToDelete != null && modules.contains(moduleToDelete)){
+            modules.remove(moduleToDelete);
+            moduleToDelete.removeCourse(this);
+        }
     }
 }
