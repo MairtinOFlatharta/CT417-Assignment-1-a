@@ -1,6 +1,11 @@
 pipeline {
     agent any
     stages {
+        stage('Clean') {
+            steps {
+                sh './gradlew clean'
+            }
+        }
         stage('Build') {
             steps {
                 sh './gradlew build'
@@ -8,13 +13,13 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh './gradlew check'
+                sh './gradlew test'
             }
         }
     }
     post {
         always {
-            junit 'build/reports/**/*.xml'
+            junit 'build/test-results/test/*.xml'
         }
     }
 }
